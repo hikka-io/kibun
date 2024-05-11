@@ -1,0 +1,25 @@
+*/**/__pycache__/*
+__pycache__/
+venv/*
+config.py
+playground.py
+alembic.ini
+settings.toml
+.venv
+
+# Linters
+.pytest_cache
+.ruff_cache
+
+# misc
+.DS_STORE
+*.db
+
+# PyRight
+pyrightconfig.json
+
+# PyCharm
+.idea
+
+# VsCode
+.vscode/*

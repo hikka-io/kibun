@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "kibun"
+version = "0.1.0"
+description = "Web scraping toolkit"
+authors = ["volbil <hello@volbil.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+loguru = "0.7.2"
+aiohttp = "3.9.5"
+aiofiles = "23.2.1"
+aiosocks = {git = "https://github.com/nibrag/aiosocks"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
