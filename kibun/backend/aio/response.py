@@ -1,7 +1,7 @@
 from kibun import constants
 
 
-async def process_response(r):
+async def process_response(r, error_markers):
     if not (content := await r.content.read()):
         return None, constants.CONTENT_ERROR
 
@@ -18,11 +18,10 @@ async def process_response(r):
     try:
         decoded = content.decode("utf-8")
 
-        if constants.MARKER_CLOUDFLARE_CHALLENGE in decoded:
-            return None, constants.CLOUDFLARE_ERROR
-
-        if constants.MARKER_PROXY_ERROR in decoded:
-            return None, constants.REQUEST_ERROR
+        # Handle custom errors
+        for error in error_markers:
+            if error["marker"] in decoded:
+                return None, error["status"]
 
     except:  # noqa: E722
         pass

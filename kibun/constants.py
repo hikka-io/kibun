@@ -5,12 +5,21 @@ CONTENT_ERROR = "CONTENT_ERROR"
 REQUEST_ERROR = "REQUEST_ERROR"
 NETWORK_ERROR = "NETWORK_ERROR"
 
+# Response types
 RESPONSE_HTML = "HTML"
 RESPONSE_JSON = "JSON"
 RESPONSE_IMAGE = "IMAGE"
 
+# Error markers
 MARKER_CLOUDFLARE_CHALLENGE = 'id="trk_jschal_js"'
 MARKER_PROXY_ERROR = "Proxy server error"
 
+# Default error markers
+DEFAULT_MARKERS = [
+    {"marker": MARKER_CLOUDFLARE_CHALLENGE, "status": CLOUDFLARE_ERROR},
+    {"marker": MARKER_PROXY_ERROR, "status": MARKER_PROXY_ERROR},
+]
+
+# Proxy types
 PROXY_TYPE_HTTP = "http"
 PROXY_TYPE_TOR = "tor"

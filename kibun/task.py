@@ -27,6 +27,7 @@ class Task:
     process_kwargs: dict
     parser_kwargs: dict
     max_fails: int | None
+    error_markers: list
 
 
 @dataclass
@@ -60,6 +61,7 @@ def create_task(
     process_kwargs={},
     parser_kwargs={},
     max_fails=10,
+    error_markers=constants.DEFAULT_MARKERS,
 ):
     if constants.NETWORK_ERROR not in done_status:
         done_status.append(constants.NETWORK_ERROR)
@@ -91,6 +93,7 @@ def create_task(
         process_kwargs,
         parser_kwargs,
         max_fails,
+        error_markers,
     )
 
 

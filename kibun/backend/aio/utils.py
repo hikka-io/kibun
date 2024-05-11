@@ -30,6 +30,7 @@ async def make_request_aio(
     method="GET",
     params={},
     proxy=None,
+    error_markers=[],
 ):
     try:
         headers = (
@@ -48,7 +49,7 @@ async def make_request_aio(
                 proxy=proxy,
                 ssl=False,
             ) as r:
-                return await process_response(r)
+                return await process_response(r, error_markers)
 
         if method == "POST":
             async with session.post(
@@ -59,7 +60,7 @@ async def make_request_aio(
                 ssl=False,
                 json=params,
             ) as r:
-                return await process_response(r)
+                return await process_response(r, error_markers)
 
     except (aiohttp.ClientError, asyncio.exceptions.TimeoutError):
         return None, constants.NETWORK_ERROR
