@@ -26,6 +26,7 @@ class Task:
     endpoint_kwargs: dict
     process_kwargs: dict
     parser_kwargs: dict
+    executor_kwargs: dict
     max_fails: int | None
     error_markers: list
 
@@ -60,6 +61,7 @@ def create_task(
     endpoint_kwargs={},
     process_kwargs={},
     parser_kwargs={},
+    executor_kwargs={},
     max_fails=10,
     error_markers=constants.DEFAULT_MARKERS,
 ):
@@ -92,6 +94,7 @@ def create_task(
         endpoint_kwargs,
         process_kwargs,
         parser_kwargs,
+        executor_kwargs,
         max_fails,
         error_markers,
     )

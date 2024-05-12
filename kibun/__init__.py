@@ -16,7 +16,10 @@ async def kibun_loop(tasks, semaphore_number=1):
         random.shuffle(tasks)
 
         result = await asyncio.gather(
-            *[task.executor(semaphore, task) for task in tasks]
+            *[
+                task.executor(semaphore, task, **task.executor_kwargs)
+                for task in tasks
+            ]
         )
 
         tasks = []
