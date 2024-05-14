@@ -81,4 +81,4 @@ async def request_aio(session, endpoint, task):
     if not success:
         task.fails += 1
 
-    return create_task_result(task, success, status)
+    return create_task_result(task, success, endpoint, status)

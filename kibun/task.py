@@ -35,6 +35,7 @@ class Task:
 class TaskResult:
     task: Task
     success: bool
+    endpoint: str
     status: str
 
 
@@ -100,5 +101,5 @@ def create_task(
     )
 
 
-def create_task_result(task, success, status=None):
-    return TaskResult(task, success, status)
+def create_task_result(task, success, endpoint, status=None):
+    return TaskResult(task, success, endpoint, status)
