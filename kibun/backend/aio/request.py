@@ -20,6 +20,7 @@ async def request_aio(session, endpoint, task):
             params=task.params,
             method=task.method,
             proxy=task.proxy,
+            error_markers=task.error_markers,
         )
 
         if status is None or status in task.allowed_status:
