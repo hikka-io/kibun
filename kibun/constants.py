@@ -17,7 +17,7 @@ MARKER_PROXY_ERROR = "Proxy server error"
 # Default error markers
 DEFAULT_MARKERS = [
     {"marker": MARKER_CLOUDFLARE_CHALLENGE, "status": CLOUDFLARE_ERROR},
-    {"marker": MARKER_PROXY_ERROR, "status": MARKER_PROXY_ERROR},
+    {"marker": MARKER_PROXY_ERROR, "status": NETWORK_ERROR},
 ]
 
 # Proxy types
