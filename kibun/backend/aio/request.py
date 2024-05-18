@@ -65,8 +65,7 @@ async def request_aio(session, endpoint, task):
 
         if status in task.delete_status:
             if task.delete is not None:
-                # TODO: check me!
-                await task.delete(task.endpoint)
+                await task.delete(**task.delete_kwargs)
                 success = True
 
             break
