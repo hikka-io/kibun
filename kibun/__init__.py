@@ -30,9 +30,12 @@ async def kibun_loop(tasks, semaphore_number=1):
             # Stop after task failed more than max_fails
             if task_result.task.max_fails is not None:
                 if task_result.task.fails > task_result.task.max_fails:
-                    logger.error(
-                        f"Task max_fails reached ({task_result.endpoint})"
-                    )
+                    message = "Task max_fails reached"
+
+                    if task_result.endpoint is not None:
+                        message += f" ({task_result.endpoint})"
+
+                    logger.error(message)
 
                     continue
 
