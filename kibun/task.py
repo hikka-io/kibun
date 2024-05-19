@@ -30,6 +30,7 @@ class Task:
     delete_kwargs: dict
     max_fails: int | None
     error_markers: list
+    headers: dict | None
 
 
 @dataclass
@@ -67,6 +68,7 @@ def create_task(
     delete_kwargs={},
     max_fails=10,
     error_markers=constants.DEFAULT_MARKERS,
+    headers=None,
 ):
     if constants.NETWORK_ERROR not in done_status:
         done_status.append(constants.NETWORK_ERROR)
@@ -101,6 +103,7 @@ def create_task(
         delete_kwargs,
         max_fails,
         error_markers,
+        headers,
     )
 
 

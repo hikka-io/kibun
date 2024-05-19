@@ -7,7 +7,8 @@ async def kibun_loop(tasks, semaphore_number=1):
     semaphore = asyncio.Semaphore(semaphore_number)
     step = 0
 
-    logger.info(f"Got {len(tasks)} tasks")
+    if len(tasks) > 0:
+        logger.info(f"Got {len(tasks)} tasks")
 
     while len(tasks) > 0:
         # Shuffle tasks to make them less predictable

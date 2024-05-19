@@ -20,6 +20,7 @@ async def request_aio(session, endpoint, task):
             params=task.params,
             method=task.method,
             proxy=task.proxy,
+            headers=task.headers,
             error_markers=task.error_markers,
         )
 
