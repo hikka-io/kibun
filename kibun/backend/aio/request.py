@@ -75,7 +75,9 @@ async def request_aio(session, endpoint, task):
 
         attempts += 1
 
-        logger.error(f"Request failed {endpoint} {status} ({attempts})")
+        # There is no need to spam generic error messages
+        if status not in [constants.NETWORK_ERROR]:
+            logger.error(f"Request failed {endpoint} {status} ({attempts})")
 
     if task.sleep > 0:
         await asyncio.sleep(task.sleep)
