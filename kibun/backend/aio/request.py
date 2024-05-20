@@ -63,6 +63,7 @@ async def request_aio(session, endpoint, task):
                 traceback.print_exc()
 
         if status in task.done_status:
+            success = True
             break
 
         if status in task.delete_status:
