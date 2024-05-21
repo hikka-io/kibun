@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kibun"
-version = "0.1.11"
+version = "0.1.12"
 description = "Web scraping toolkit"
 authors = ["volbil <hello@volbil.com>"]
 license = "MIT"
