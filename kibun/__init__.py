@@ -28,6 +28,10 @@ async def kibun_loop(tasks, semaphore_number=1):
             if task_result.success:
                 continue
 
+            # Do not retry task if it's failed with non retry status
+            if task_result.status not in task_result.task.retry_status:
+                continue
+
             # Stop after task failed more than max_fails
             if task_result.task.max_fails is not None:
                 if task_result.task.fails > task_result.task.max_fails:
