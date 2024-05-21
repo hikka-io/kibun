@@ -76,7 +76,7 @@ async def request_aio(session, endpoint, task):
         attempts += 1
 
         # There is no need to spam generic error messages
-        if status not in task.retry_status:
+        if len(task.retry_status) > 0 and status not in task.retry_status:
             logger.error(f"Request failed {endpoint} {status} ({attempts})")
 
     if task.sleep > 0:
