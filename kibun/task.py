@@ -70,9 +70,6 @@ def create_task(
     error_markers=constants.DEFAULT_MARKERS,
     headers=None,
 ):
-    if constants.NETWORK_ERROR not in retry_status:
-        retry_status.append(constants.NETWORK_ERROR)
-
     return Task(
         method,
         allowed_status,
