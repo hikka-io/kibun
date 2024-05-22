@@ -5,7 +5,7 @@ import os
 
 
 async def save_text_to_file(path, text):
-    print(f"Saved path {path}")
+    # print(f"Saved path {path}")
 
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
