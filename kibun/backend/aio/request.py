@@ -29,7 +29,7 @@ async def request_aio(session, endpoint, task):
                 # Sometimes decode can fail
                 # Hence we do that in try/except block
                 if task.response_format == constants.RESPONSE_HTML:
-                    decoded_content = content.decode("utf-8")
+                    decoded_content = content.decode("utf-8", "ignore")
                     domain = utils.get_website_address(endpoint)
 
                     if "<head>" not in decoded_content:
@@ -40,7 +40,7 @@ async def request_aio(session, endpoint, task):
 
                 if task.save_path:
                     await utils.utils.save_text_to_file(
-                        task.save_path, content.decode("utf-8")
+                        task.save_path, content.decode("utf-8", "ignore")
                     )
 
                 else:

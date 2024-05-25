@@ -14,25 +14,28 @@ async def request_ply(context, endpoint, task):
     attempts = 0
 
     while attempts < task.max_attempts:
-        content, status = await make_request_ply(
-            context,
-            endpoint,
-            error_markers=task.error_markers,
-        )
+        try:
+            content, status = await make_request_ply(
+                context,
+                endpoint,
+                error_markers=task.error_markers,
+            )
 
-        if status is None or status in task.allowed_status:
-            try:
+            if status is None or status in task.allowed_status:
                 if task.response_format == constants.RESPONSE_HTML:
+                    decoded_content = content.decode("utf-8", "ignore")
                     domain = utils.get_website_address(endpoint)
 
-                    if "<head>" not in content:
+                    if "<head>" not in decoded_content:
                         continue
 
-                    if domain not in content:
+                    if domain not in decoded_content:
                         continue
 
                 if task.save_path:
-                    await utils.utils.save_text_to_file(task.save_path, content)
+                    await utils.utils.save_text_to_file(
+                        task.save_path, content.decode("utf-8", "ignore")
+                    )
 
                 else:
                     if task.response_format == constants.RESPONSE_JSON:
@@ -44,14 +47,12 @@ async def request_ply(context, endpoint, task):
                 success = True
                 break
 
-            except Exception as _:
-                logger.error(
-                    f"Request {endpoint} failed, retrying ({attempts})"
-                )
+        except Exception as _:
+            logger.error(f"Request {endpoint} failed, retrying ({attempts})")
 
-                # Dump full output for debuging
-                # TODO: make this optional (?)
-                traceback.print_exc()
+            # Dump full output for debuging
+            # TODO: make this optional (?)
+            traceback.print_exc()
 
         if status in task.done_status:
             success = True

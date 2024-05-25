@@ -7,7 +7,7 @@ async def process_response(r, error_markers):
 
     # Special case for html based text errors
     try:
-        decoded = content.decode("utf-8")
+        decoded = content.decode("utf-8", "ignore")
 
         # Handle custom errors
         for error in error_markers:
