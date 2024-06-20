@@ -18,6 +18,9 @@ async def process_response(r, error_markers):
     except:  # noqa: E722
         pass
 
+    if r.status in [500, 502, 503, 504]:
+        return content, constants.SERVER_ERROR
+
     if r.status == 404:
         return content, constants.NOT_FOUND_ERROR
 
